@@ -2,25 +2,20 @@ import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import PropTypes from 'prop-types';
 import { nanoid } from 'nanoid';
-import { saveContact, deleteContact, setFilter } from '../features/contactsSlice';
+import { fetchContacts, addContact, removeContact, setFilter } from '../features/contactsSlice';
 import styles from './Contacts/Contact.module.scss';
 
 const Contacts = () => {
   const contacts = useSelector(state => state.contacts.contacts) || [];
   const filter = useSelector(state => state.contacts.filter) || '';
+  const status = useSelector(state => state.contacts.status);
   const dispatch = useDispatch();
 
   useEffect(() => {
-    const savedContacts = localStorage.getItem('contacts');
-    if (savedContacts) {
-      const contacts = JSON.parse(savedContacts);
-      contacts.forEach(contact => dispatch(saveContact(contact)));
+    if (status === 'idle') {
+      dispatch(fetchContacts());
     }
-  }, [dispatch]);
-
-  useEffect(() => {
-    localStorage.setItem('contacts', JSON.stringify(contacts));
-  }, [contacts]);
+  }, [status, dispatch]);
 
   const handleChange = ev => {
     const { name, value } = ev.target;
@@ -49,12 +44,12 @@ const Contacts = () => {
       return;
     }
 
-    dispatch(saveContact({ id: nanoid(), name, number }));
+    dispatch(addContact({ name, number }));
     form.reset();
   };
 
   const handleDelete = id => {
-    dispatch(deleteContact(id));
+    dispatch(removeContact(id));
   };
 
   const nameId = nanoid();
