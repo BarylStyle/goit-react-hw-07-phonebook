@@ -1,0 +1,68 @@
+.form,
+.searchForm {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 20px auto;
+}
+
+.form label,
+.searchForm label {
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+.form input,
+.searchForm input {
+    width: 100%;
+    max-width: 300px;
+    padding: 10px;
+    margin-bottom: 10px;
+    border-radius: 20px;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+}
+
+.form button,
+.deleteButton {
+    background-color: #28a745;
+    color: white;
+    border: none;
+    border-radius: 20px;
+    padding: 10px 20px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    margin-top: 10px;
+}
+
+.form button:hover,
+.deleteButton:hover {
+    background-color: #218838;
+}
+
+.deleteButton {
+    background-color: #ff4d4d;
+    margin-left: 10px;
+}
+
+.deleteButton:hover {
+    background-color: #ff1a1a;
+}
+
+.list {
+    list-style: none;
+    padding: 0;
+    text-align: center;
+}
+
+.list li {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+    border-bottom: 1px solid #ccc;
+}
+
+h1 {
+    text-align: center;
+}
